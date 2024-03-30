@@ -13,25 +13,25 @@
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input id="name" class="form-control" type="text" name="Name" th:value="${patient.name}">
-            <div th:if="${#fields.hasErrors('patient.name')}" th:errors="*{patient.name}" class="invalid-feedback"></div>
+            <div th:errors="${patient.name}" class="invalid-feedback"></div>
         </div>
 
         <div class="mb-3">
             <label for="birthday" class="form-label">Birthday</label>
             <input id="birthday" class="form-control" type="date" name="Birthday" th:value="${patient.birthday}">
-            <div th:if="${#fields.hasErrors('patient.birthday')}" th:errors="*{patient.birthday}" class="invalid-feedback"></div>
+            <div th:errors="${patient.birthday}" class="invalid-feedback"></div>
         </div>
 
         <div class="mb-3 form-check">
             <input id="isSick" class="form-check-input" type="checkbox" name="isSick" th:checked="${patient.sick}">
             <label class="form-check-label" for="isSick">Sick</label>
-            <div th:if="${#fields.hasErrors('patient.sick')}" th:errors="*{patient.sick}" class="invalid-feedback"></div>
+            <div th:errors="${patient.sick}" class="invalid-feedback"></div>
         </div>
 
         <div class="mb-3">
             <label for="score" class="form-label">Score</label>
             <input id="score" class="form-control" type="number" name="Score" th:value="${patient.score}">
-            <div th:if="${#fields.hasErrors('patient.score')}" th:errors="*{patient.score}" class="invalid-feedback"></div>
+            <div th:errors="${patient.score}" class="invalid-feedback"></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

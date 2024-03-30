@@ -2,11 +2,13 @@ package dev.enegadi.jeetp3.web;
 
 import dev.enegadi.jeetp3.Entities.Patient;
 import dev.enegadi.jeetp3.Reposotories.PatientRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +42,13 @@ public class PatientController {
         return "patientsForm";
     }
 
-    @PostMapping(path = "save")
-    public String save(Model model, Patient patient){
+    @PostMapping(path = "/save")
+    public String save(Model model, @Valid Patient patient, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("org.springframework.validation.BindingResult.patient", bindingResult);
+            return "patientsForm";
+        }
         patientRepository.save(patient);
-        return "patientsForm";
+        return "redirect:patientsForm";
     }
 }
