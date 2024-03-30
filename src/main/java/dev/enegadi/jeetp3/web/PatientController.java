@@ -48,7 +48,18 @@ public class PatientController {
             model.addAttribute("org.springframework.validation.BindingResult.patient", bindingResult);
             return "patientsForm";
         }
+        System.out.println(patient);
         patientRepository.save(patient);
-        return "redirect:patientsForm";
+        return "redirect:index";
+    }
+
+
+    @GetMapping("/editPatient")
+    public String editPatient(Model model, Long patientId) {
+        Patient patient = patientRepository.findById(patientId).get();
+//        if(patient == null) throw new RuntimeException("Patient not found");
+        System.out.println(patient);
+        model.addAttribute("patient", patient);
+        return "editPatient";
     }
 }
